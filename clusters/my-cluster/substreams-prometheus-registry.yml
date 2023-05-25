@@ -1,0 +1,9 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: repo-substreams
+  namespace: flux-system
+spec:
+  image: hub.docker.com/repository/docker/gcleroux/test-substreams-prometheus-sink
+  interval: 1m0s

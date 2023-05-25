@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: repo-deployment-substreams
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: repo-substreams
+  revisionHistoryLimit: 5
+  progressDeadlineSeconds: 300
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: repo-substreams
+    spec:
+      containers:
+        - name: repo-substreams-prometheus-sink
+          image: gcleroux/test-substreams-prometheus-sink:v0.5.0 # {"$imagepolicy": "flux-system:repo-substreams"}
+          args:
+            [
+              "run",
+              "https://github.com/pinax-network/substreams/releases/download/eosio.token-v0.11.1/eosio-token-v0.11.1.spkg",
+              "map_transfers",
+              "-e",
+              "https://eos.firehose.eosnation.io:9001",
+              "--verbose",
+              "-s",
+              "-1",
+              "--address",
+              "0.0.0.0"
+            ]
+          ports:
+            - containerPort: 9102

@@ -1,0 +1,12 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: repo-substreams
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: repo-substreams
+  policy:
+    semver:
+      range: '>=0.5.0'
