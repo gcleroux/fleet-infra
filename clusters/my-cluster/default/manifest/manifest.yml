@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: manifest-substreams-prometheus-sink
-          image: gcleroux/test-substreams-prometheus-sink:v1.0.0
+          image: gcleroux/test-substreams-prometheus-sink:v1.1.0
           args:
             [
               "run",
