@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-manifest
+  namespace: default
+  labels:
+    app: manifest-substreams
+spec:
+  type: NodePort
+  ports:
+    - port: 9102
+      nodePort: 30001
+      targetPort: 9102
+      protocol: TCP
+  selector:
+    app: manifest-substreams
