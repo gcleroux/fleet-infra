@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -24,19 +23,7 @@ spec:
     spec:
       containers:
         - name: repo-substreams-prometheus-sink
-          image: ghcr.io/gcleroux/substreams-sink-prometheus:v1.5.0 # {"$imagepolicy": "flux-system:repo-substreams"}
-          args:
-            [
-              "run",
-              "https://github.com/pinax-network/substreams/releases/download/eosio.token-v0.11.1/eosio-token-v0.11.1.spkg",
-              "map_transfers",
-              "-e",
-              "https://eos.firehose.eosnation.io:9001",
-              "--verbose",
-              "-s",
-              "-1",
-              "--address",
-              "0.0.0.0"
-            ]
+          image: ghcr.io/gcleroux/substreams-sink-prometheus:v1.6.0 # {"$imagepolicy": "flux-system:repo-substreams"}
+          args: ["run", "https://github.com/pinax-network/substreams/releases/download/eosio.token-v0.11.1/eosio-token-v0.11.1.spkg", "map_transfers", "-e", "https://eos.firehose.eosnation.io:9001", "--verbose", "-s", "-1", "--address", "0.0.0.0"]
           ports:
             - containerPort: 9102
