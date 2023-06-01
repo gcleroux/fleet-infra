@@ -1,0 +1,4 @@
+defaultRules:
+  ## Additional labels for PrometheusRule alerts
+  additionalRuleLabels:
+    network: eos
