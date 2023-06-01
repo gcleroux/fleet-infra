@@ -7,6 +7,12 @@ kind create cluster
 export GITHUB_USER=$(cat ./secrets/github_account)
 export GITHUB_TOKEN=$(cat ./secrets/github_token)
 
+# Secret to pull image from ghcr private repo
+kubectl -n default create secret docker-registry ghcr-login-secret \
+    --docker-server=https://ghcr.io \
+    --docker-username="$(cat ./secrets/github_account)" \
+    --docker-password="$(cat ./secrets/ghcr_token)"
+
 # Bootstrapping flux on the cluster
 flux bootstrap github \
     --components-extra=image-reflector-controller,image-automation-controller \
@@ -18,7 +24,5 @@ flux bootstrap github \
     --read-write-key
 
 # Adding discord secret url to cluster
-discord_url=$(cat ./secrets/discord_webhook)
-
 kubectl -n flux-system create secret generic discord-url \
-    --from-literal=address="$discord_url"
+    --from-literal=address="$(cat ./secrets/discord_webhook)"

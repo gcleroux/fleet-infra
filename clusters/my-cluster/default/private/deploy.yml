@@ -1,27 +1,15 @@
----
-apiVersion: apps/v1
-kind: Deployment
+# https://kubernetes.io/docs/concepts/workloads/pods/
+apiVersion: v1
+kind: Pod
 metadata:
   name: private-test
   namespace: default
+  labels:
+    app: private-test
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: private-test
-  revisionHistoryLimit: 5
-  progressDeadlineSeconds: 300
-  minReadySeconds: 10
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 1
-      maxSurge: 1
-  template:
-    metadata:
-      labels:
-        app: private-test
-    spec:
-      containers:
-        - name: private-test
-          image: ghcr.io/gcleroux/test
+  containers:
+    - name: private-test
+      image: ghcr.io/gcleroux/test:main
+  imagePullSecrets:
+    - name: ghcr-login-secret
+  restartPolicy: Never
