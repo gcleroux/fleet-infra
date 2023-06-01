@@ -26,3 +26,13 @@ flux bootstrap github \
 # Adding discord secret url to cluster
 kubectl -n flux-system create secret generic discord-url \
     --from-literal=address="$(cat ./secrets/discord_webhook)"
+
+# Creating the monitroing for prometheus
+kubectl create namespace monitoring
+kubectl config set-context --current --namespace monitoring
+
+# Installing the prometheus stack
+helm install prometheus prometheus-community/kube-prometheus-stack \
+    -f ./clusters/my-cluster/monitoring/prometheus/helm-values.yml
+
+kubectl config set-context --current --namespace default
