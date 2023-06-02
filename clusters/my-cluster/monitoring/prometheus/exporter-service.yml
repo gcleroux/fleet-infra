@@ -20,9 +20,12 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: repo-substreams-exporter
+  namespace: monitoring
   labels:
     release: prometheus
 spec:
+  namespaceSelector:
+    any: true
   selector:
     matchLabels:
       app: repo-substreams

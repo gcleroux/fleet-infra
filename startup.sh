@@ -13,6 +13,14 @@ kubectl -n default create secret docker-registry ghcr-login-secret \
     --docker-username="$(cat ./secrets/github_account)" \
     --docker-password="$(cat ./secrets/ghcr_token)"
 
+# Creating the monitroing for prometheus
+kubectl create namespace monitoring
+
+# Installing the prometheus stack
+helm install prometheus prometheus-community/kube-prometheus-stack \
+    --namespace monitoring \
+    --values ./config/helm-values.yml
+
 # Bootstrapping flux on the cluster
 flux bootstrap github \
     --components-extra=image-reflector-controller,image-automation-controller \
@@ -26,13 +34,3 @@ flux bootstrap github \
 # Adding discord secret url to cluster
 kubectl -n flux-system create secret generic discord-url \
     --from-literal=address="$(cat ./secrets/discord_webhook)"
-
-# Creating the monitroing for prometheus
-kubectl create namespace monitoring
-kubectl config set-context --current --namespace monitoring
-
-# Installing the prometheus stack
-helm install prometheus prometheus-community/kube-prometheus-stack \
-    -f ./clusters/my-cluster/monitoring/prometheus/helm-values.yml
-
-kubectl config set-context --current --namespace default
