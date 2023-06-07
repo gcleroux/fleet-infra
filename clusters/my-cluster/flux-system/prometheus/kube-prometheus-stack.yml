@@ -6,10 +6,10 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1h0m0s
-  path: ./manifests/monitoring/kube-prometheus-stack
+  path: ./clusters/my-cluster/monitoring/kube-prometheus-stack
   prune: true
   sourceRef:
     kind: GitRepository
-    name: flux-monitoring
+    name: flux-system
   timeout: 5m0s
   wait: true

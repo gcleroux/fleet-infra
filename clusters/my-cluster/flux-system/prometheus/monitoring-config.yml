@@ -6,12 +6,12 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-  - name: kube-prometheus-stack
+    - name: kube-prometheus-stack
   interval: 1h0m0s
-  path: ./manifests/monitoring/monitoring-config
+  path: ./clusters/my-cluster/monitoring/monitoring-config
   prune: true
   sourceRef:
     kind: GitRepository
-    name: flux-monitoring
+    name: flux-system
   timeout: 1m0s
   wait: true
