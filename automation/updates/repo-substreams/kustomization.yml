@@ -1,0 +1,8 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: default
+resources:
+  - flux-system-automation.yml
+  - substreams-prometheus-policy.yml
+  - substreams-prometheus-registry.yml
