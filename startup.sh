@@ -13,14 +13,6 @@ kubectl -n default create secret docker-registry ghcr-login-secret \
     --docker-username="$(cat ./secrets/github_account)" \
     --docker-password="$(cat ./secrets/ghcr_token)"
 
-# Creating the monitroing for prometheus
-kubectl create namespace monitoring
-
-# Installing the prometheus stack
-helm install prometheus prometheus-community/kube-prometheus-stack \
-    --namespace monitoring \
-    --values ./config/helm-values.yml
-
 # Bootstrapping flux on the cluster
 flux bootstrap github \
     --components-extra=image-reflector-controller,image-automation-controller \
