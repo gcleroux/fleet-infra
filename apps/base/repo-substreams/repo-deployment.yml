@@ -24,6 +24,18 @@ spec:
       containers:
         - name: repo-substreams-prometheus-sink
           image: ghcr.io/gcleroux/substreams-sink-prometheus:v4.20.69 # {"$imagepolicy": "flux-system:repo-substreams"}
-          args: ["run", "https://github.com/pinax-network/substreams/releases/download/eosmechanics-v0.3.6/eosmechanics-v0.3.6.spkg", "prom_out", "-e", "https://eos.firehose.eosnation.io:9001", "--verbose", "-s", "-1", "--address", "0.0.0.0"]
+          args:
+            [
+              "run",
+              "https://github.com/pinax-network/substreams/releases/download/eosmechanics-v0.3.6/eosmechanics-v0.3.6.spkg",
+              "prom_out",
+              "-e",
+              "https://eos.firehose.eosnation.io:9001",
+              "--verbose",
+              "-s",
+              "-1",
+              "--address",
+              "0.0.0.0"
+            ]
           ports:
             - containerPort: 9102
