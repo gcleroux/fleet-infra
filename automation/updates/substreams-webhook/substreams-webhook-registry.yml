@@ -1,0 +1,9 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: substreams-webhook
+  namespace: flux-system
+spec:
+  image: ghcr.io/gcleroux/substreams-sink-webhook
+  interval: 1m0s

@@ -1,0 +1,28 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-webhook
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client-webhook
+  revisionHistoryLimit: 5
+  progressDeadlineSeconds: 300
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: client-webhook
+    spec:
+      containers:
+        - name: substreams-sink-webhook
+          image: ghcr.io/gcleroux/substreams-sink-webhook:v0.1.0 # {"$imagepolicy": "flux-system:substreams-webhook"}
+          args: [ "--env URL=http://127.0.0.1:30030" ]

@@ -1,0 +1,9 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: pinax-cloud
+  namespace: flux-system
+spec:
+  image: ghcr.io/gcleroux/pinax-cloud-webhooks/pinax-cloud-webhooks.bun
+  interval: 1m0s
