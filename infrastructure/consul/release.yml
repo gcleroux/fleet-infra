@@ -1,0 +1,14 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: consul
+  namespace: consul
+spec:
+  chart:
+    spec:
+      chart: consul
+      sourceRef:
+        kind: HelmRepository
+        name: consul-helm-repo
+  interval: 5m
