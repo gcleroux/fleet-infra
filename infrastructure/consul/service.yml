@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-consul-ui
+  namespace: consul
+spec:
+  type: NodePort
+  ports:
+    # Exposing the consul port to make it easier to demo
+    - port: 8500
+      nodePort: 30003
+      targetPort: 8500
+      protocol: TCP
+  selector:
+    app: consul
