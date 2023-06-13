@@ -20,6 +20,9 @@ spec:
     metadata:
       labels:
         app: repo-substreams
+      # Inject the envoy proxy sidecar into the application
+      annotations:
+        consul.hashicorp.com/connect-inject: "true"
     spec:
       containers:
         - name: repo-substreams-prometheus-sink
