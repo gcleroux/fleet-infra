@@ -20,7 +20,7 @@ metadata:
   name: infra-istio-ingress
   namespace: flux-system
 spec:
-  depends_on:
+  dependsOn:
     - name: infra-istio
   interval: 1h
   retryInterval: 1m

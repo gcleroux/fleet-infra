@@ -1,0 +1,11 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: flagger-repo
+  namespace: flux-system
+spec:
+  interval: 5m0s
+  url: https://github.com/fluxcd/flagger
+  ref:
+    branch: main
