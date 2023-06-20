@@ -5,6 +5,8 @@ metadata:
   name: apps
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: infra-istio-ingress
   interval: 10m0s
   sourceRef:
     kind: GitRepository
