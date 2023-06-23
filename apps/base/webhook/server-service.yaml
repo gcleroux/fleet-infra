@@ -2,15 +2,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: svc-pinax-cloud
-  namespace: default
+  name: server
+  namespace: webhook
   labels:
     app: pinax-cloud
 spec:
   type: ClusterIP
   ports:
-    - port: 30030
-      targetPort: 30030
+    - port: 3000
+      targetPort: 3000
       protocol: TCP
   selector:
     app: pinax-cloud

@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pinax-cloud
-  namespace: default
+  namespace: webhook
 spec:
   replicas: 1
   selector:
@@ -25,7 +25,8 @@ spec:
       containers:
         - name: pinax-cloud
           image: ghcr.io/gcleroux/pinax-cloud-webhooks/pinax-cloud-webhooks.deno:v0.1.0 # {"$imagepolicy": "flux-system:pinax-cloud"}
-          env:
-            - PORT: 30030
           ports:
-            - containerPort: 30030
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: server-config

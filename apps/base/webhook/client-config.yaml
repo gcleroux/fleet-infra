@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: client-config
+  namespace: webhook
+data:
+  PUBLIC_KEY: PUB_K1_5w3VkAhM3vNSgmiByg4j633PLerPR1MnbrpXJdZjNKfbTVyVKV
+  SUBSTREAMS_API_TOKEN: server_none
+  URL: http://server.webhook.svc.cluster.local:3000
+  CHAIN: wax
+  SPKG: eosio.token
+  MODULE_NAME: map_transfers
+  START_BLOCK: "-1"
+  PARAM: "symcode=WAX"

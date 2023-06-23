@@ -1,0 +1,9 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: server-config
+  namespace: webhook
+data:
+  PUBLIC_KEY: PUB_K1_5w3VkAhM3vNSgmiByg4j633PLerPR1MnbrpXJdZjNKfbTVyVKV
+  PORT: "3000"
